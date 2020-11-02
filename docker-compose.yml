@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  app:
+    container_name: python-dash
+    build: .
+    volumes:
+      - .:/code
+    # command: python sample01.py
+    ports:
+      - 8050:8050
+
+  db:
+    container_name: dash-db
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dash
+      MYSQL_PASSWORD: dash
+      TZ: "Asia/Tokyo"
+    volumes:
+      - db_volume:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d # 定義どおりにテーブル作成
+      - ./mysql/conf.d:/etc/mysql/conf.d # MySQLの基本設定(文字化け対策)
+      # - ./mysql/log:/var/log/mysql # ログの保存
+
+volumes:
+  db_volume:

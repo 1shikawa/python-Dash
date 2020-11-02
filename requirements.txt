@@ -1,0 +1,15 @@
+dash
+numpy
+lxml
+mysqlclient
+Flask
+dash-renderer
+dash-core-components
+dash-html-components
+plotly
+pandas
+requests
+beautifulsoup4
+SQLAlchemy
+gunicorn
+psycopg2
